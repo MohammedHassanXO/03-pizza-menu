@@ -53,15 +53,18 @@ function App() {
     return <div className='container'>
         <Header />
         <Menu />
-        <Footer/>
+        <Footer />
     </div>
 };
 
-function Pizza() {
-    return <div>
-        <img src='pizzas/spinaci.jpg' alt='Pizza Spinaci' />
-        <h3>Pizza Spinaci</h3>
-        <p>Tomato, mozarella, spinach, and ricotta cheese</p>
+function Pizza(props) {
+    return <div className='pizza'>
+        <img src={props.photoName} alt={props.name} />
+        <div>
+            <h3>{props.name}</h3>
+            <p>{props.ingredients}</p>
+            <span>{props.price}</span>
+        </div>
     </div>
 }
 
@@ -74,12 +77,8 @@ function Header() {
 function Menu() {
     return <main className='menu'>
         <h2>Our Menu</h2>
-        <Pizza />
-        <Pizza />
-        <Pizza />
-        <Pizza />
-        <Pizza />
-        <Pizza />
+        <Pizza name="Pizza Prosciutto" photoName="pizzas/prosciutto.jpg" ingredients="Tomato, mozarella, ham, aragula, and burrata cheese" price={18} soldOut={false} />
+        <Pizza name="Pizza Prosciutto" photoName="pizzas/prosciutto.jpg" ingredients="Tomato, mozarella, ham, aragula, and burrata cheese" price={18} soldOut={false} />
     </main>
 }
 
@@ -87,11 +86,10 @@ function Footer() {
     const hour = new Date().getHours();
     const openHour = 8;
     const closeHour = 22;
-    const isOpen = hour >= openHour && hour <= closeHour;
-    // console.log(hour);
-    // console.log(isOpen);
+    const isOpen = hour >= openHour && hour <= closeHour ? "We're open now" : "We're closed now";
+
     return <footer className='footer'>
-        <p>We're open now - {isOpen.toString()}</p>
+        {isOpen}
     </footer>
 }
 
