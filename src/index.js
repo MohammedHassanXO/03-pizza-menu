@@ -92,18 +92,19 @@ function Footer() {
     const isOpen = hour >= openHour && hour <= closeHour;
 
     return <footer className='footer'>
-        {isOpen && (
-            <div className='order'>
-                <p>We're open until {closeHour}:00. Come visit us or order online.</p>
-                <button className='btn'>order</button>
-            </div>
-        )}
-        {!isOpen && (
+        {isOpen ? <Order closeHour={closeHour} /> :(
             <div className='order'>
                 <p>We're closed. We'll open {openHour}:00.</p>
             </div>
         )}
     </footer>
+}
+
+function Order(props) {
+    return <div className='order'>
+        <p>We're open until {props.closeHour}:00. Come visit us or order online.</p>
+        <button className='btn'>order</button>
+    </div>
 }
 
 
